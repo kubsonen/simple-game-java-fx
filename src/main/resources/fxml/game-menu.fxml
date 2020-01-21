@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: white; -fx-border-color: black;" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.com.game.component.MenuModel">
+   <children>
+      <Label fx:id="menuLabel" alignment="CENTER" layoutX="15.0" layoutY="14.0" prefHeight="28.0" prefWidth="171.0" text="Nowa gra">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+      <Button fx:id="newGameButton" layoutX="42.0" layoutY="63.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="116.0" text="Nowa gra" />
+      <Button fx:id="exitButton" layoutX="42.0" layoutY="100.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="116.0" text="Koniec" />
+   </children>
+</AnchorPane>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="80.0" prefWidth="160.0" style="-fx-border-color: black; -fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.com.game.component.BoardModel">
+   <children>
+      <Label layoutX="14.0" layoutY="14.0" style="-fx-font-weight: bold;" text="Czas" />
+      <Label layoutX="14.0" layoutY="40.0" style="-fx-font-weight: bold;" text="Poziom" />
+      <Label fx:id="levelLabel" layoutX="66.0" layoutY="40.0" prefHeight="17.0" prefWidth="73.0" />
+      <Label fx:id="timeLabel" layoutX="66.0" layoutY="14.0" prefHeight="17.0" prefWidth="73.0" />
+   </children>
+</AnchorPane>
