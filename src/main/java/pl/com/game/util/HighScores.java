@@ -53,15 +53,12 @@ public class HighScores {
             File hsFile = getHighScoreFile();
             if (hsFile == null) return "";
 
-            hsFile.delete();
-            hsFile.createNewFile();
-
             String g = "";
             String line;
 
             try (BufferedReader reader = new BufferedReader(new FileReader(hsFile))) {
                 while ((line = reader.readLine()) != null) {
-                    g += line;
+                    g = g + line;
                 }
             }
 
