@@ -12,7 +12,8 @@
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <Button fx:id="newGameButton" layoutX="42.0" layoutY="63.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="116.0" text="Nowa gra" />
-      <Button fx:id="exitButton" layoutX="42.0" layoutY="100.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="116.0" text="Koniec" />
+      <Button fx:id="newGameButton" layoutX="42.0" layoutY="96.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="116.0" text="Nowa gra" />
+      <Button fx:id="exitButton" layoutX="42.0" layoutY="141.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="116.0" text="Koniec" />
+      <Label fx:id="infoLabel" alignment="CENTER" layoutX="29.0" layoutY="49.0" prefHeight="17.0" prefWidth="144.0" textAlignment="CENTER" />
    </children>
 </AnchorPane>

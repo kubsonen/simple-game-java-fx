@@ -9,6 +9,7 @@ import javafx.scene.Node;
 import javafx.scene.layout.AnchorPane;
 import pl.com.game.Starter;
 import pl.com.game.component.*;
+import pl.com.game.util.HighScores;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -87,6 +88,7 @@ public class GameArea {
 
     //Menu
     private Menu menu;
+    private MenuHigh menuHigh;
 
     public GameArea() throws Exception {
         initAnimationTimer(this::performHorizontalMove);
@@ -125,9 +127,20 @@ public class GameArea {
 
     }
 
-    private void pause() {
+    private void gameOver() {
         gameRun = !gameRun;
+
+        double score = calcSec() * level;
+
+        HighScores.getHighScoreFile();
+        HighScores.saveHighScore("qwdqwdqwd", score);
+
+        System.out.println("Game over");
+
+//        System.out.println("HS text: " + HighScores.getHsText());
+
         menu.getMenuModel().getMenuLabel().setText("GAME OVER!");
+        menu.getMenuModel().getInfoLabel().setText("Your score: " + score);
         menu.getMenuModel().getNewGameButton().setOnMouseClicked(event -> {
             anchorPane.getChildren().remove(menu);
             startNewGame();
@@ -179,6 +192,18 @@ public class GameArea {
                 e.printStackTrace();
             }
         });
+
+        menuHigh = new MenuHigh();
+        menuHigh.setTranslateX(300);
+        menuHigh.setTranslateY(320);
+        menuHigh.getMenuHighModel().getExitButton().setOnMouseClicked(event -> {
+            try {
+                Starter.getApplication().getStage().close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+
     }
 
     private void initBoard() {
@@ -398,7 +423,7 @@ public class GameArea {
         checkCrashBorders();
         checkCrashObstacles();
 
-        long sec = (System.currentTimeMillis() - startTime) / 1000;
+        long sec = calcSec();
 
         int secondsToNextLvl = 0;
         for (int i = 1; i <= level; i++) {
@@ -409,6 +434,10 @@ public class GameArea {
             ++level;
 
         paintBoard(sec, level);
+    }
+
+    private long calcSec() {
+        return (System.currentTimeMillis() - startTime) / 1000;
     }
 
     private void paintBoard(long sec, int level) {
@@ -442,8 +471,8 @@ public class GameArea {
         double leftBolidTop = bolidCenter + leftTopPointX;
         double leftBolidBottom = bolidCenter + leftBottomPointX;
 
-        if (leftBolidTop < leftBorderCrashLine) pause();
-        if (leftBolidBottom < leftBorderCrashLine) pause();
+        if (leftBolidTop < leftBorderCrashLine) gameOver();
+        if (leftBolidBottom < leftBorderCrashLine) gameOver();
 
         //Check crash with right border
         double rightTopPointX = cornerRadius * Math.cos(Math.toRadians(originalAngle - startAngleTop));
@@ -451,8 +480,8 @@ public class GameArea {
         double rightBolidTop = bolidCenter + rightTopPointX;
         double rightBolidBottom = bolidCenter + rightBottomPointX;
 
-        if (rightBolidTop > rightBorderCrashLine) pause();
-        if (rightBolidBottom > rightBorderCrashLine) pause();
+        if (rightBolidTop > rightBorderCrashLine) gameOver();
+        if (rightBolidBottom > rightBorderCrashLine) gameOver();
 
     }
 
@@ -511,7 +540,7 @@ public class GameArea {
 
         for (Obstacle ob : obstacles)
             for (Point p : ob.getObstaclePoints())
-                if (polygon.contains(p)) pause();
+                if (polygon.contains(p)) gameOver();
 
     }
 
